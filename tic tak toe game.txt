@@ -1,0 +1,300 @@
+package tictaktoegame;
+import java.util.*;
+public class tictaktoe{
+    static void printbox(String box[][]){
+        for(String row[]: box){
+            System.out.println(Arrays.toString(row));
+        }
+    }
+    static boolean rowwins1(String box[][],boolean dothi){
+        int u=0;
+        for(int i=0;i<3;i++){
+            if(box[0][i].equals("x")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        u=0;
+        for(int j=0;j<3;j++){
+            if(box[1][j].equals("x")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi = true;
+        }
+        u=0;
+        for(int o=0;o<3;o++){
+            if(box[2][o].equals("x")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        return dothi;
+    }
+    static boolean rowwins2(String box[][],boolean dothi){
+        int u=0;
+        for(int i=0;i<3;i++){
+            if(box[0][i].equals("o")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        u=0;
+        for(int j=0;j<3;j++){
+            if(box[1][j].equals("o")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi = true;
+        }
+        u=0;
+        for(int o=0;o<3;o++){
+            if(box[2][o].equals("o")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        return dothi;
+    }
+    static boolean colwins1(String box[][],boolean dothi){
+        int u=0;
+        for(int i=0;i<3;i++){
+            if(box[i][0].equals("x")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        u=0;
+        for(int i=0;i<3;i++){
+            if(box[i][1].equals("x")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        u=0;
+        for(int i=0;i<3;i++){
+            if(box[i][2].equals("x")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        return dothi;
+    }
+    static boolean colwins2(String box[][],boolean dothi){
+        int u=0;
+        for(int i=0;i<3;i++){
+            if(box[i][0].equals("o")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        u=0;
+        for(int i=0;i<3;i++){
+            if(box[i][1].equals("o")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        u=0;
+        for(int i=0;i<3;i++){
+            if(box[i][2].equals("o")){
+                u=u+1;
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        return dothi;
+    }
+    static boolean fdgnlwin1(String box[][],boolean dothi){
+        int u=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if(i==j){
+                    if(box[i][j].equals("x")){
+                        u=u+1;
+                    }
+                }
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        return dothi;
+    }
+    static boolean fdgnlwin2(String box[][],boolean dothi){
+        int u=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if(i==j){
+                    if(box[i][j].equals("o")){
+                        u=u+1;
+                    }
+                }
+            }
+        }
+        if(u==3){
+            dothi=true;
+        }
+        return dothi;
+    }
+    static boolean bdnglwins1(String box[][],boolean dothi){
+        if(box[2][0].equals("x") && box[1][1].equals("x") && box[0][2].equals("x")){
+            dothi =true;
+        }
+        return dothi;
+    }
+    static boolean bdnglwins2(String box[][],boolean dothi){
+        if(box[2][0].equals("o") && box[1][1].equals("o") && box[0][2].equals("o")){
+            dothi =true;
+        }
+        return dothi;
+    }
+    static void user1(String box[][],String frow){
+        char n,m;
+                n=frow.charAt(0);
+                m=frow.charAt(1);
+                int i,j;
+                i=Character.getNumericValue(n);
+                j=Character.getNumericValue(m);
+                box[i-1][j-1]="x";
+    }
+    static void user2(String box[][],String frow){
+        char o,p;
+                o=frow.charAt(0);
+                p=frow.charAt(1);
+                int k,l;
+                k=Character.getNumericValue(o);
+                l=Character.getNumericValue(p);
+                box[k-1][l-1]="o";
+    }
+    static boolean emptycheck(String box[][],int i,int j,boolean dotha){
+        if(box[i-1][j-1].equals("x")||box[i-1][j-1].equals("o")){
+            dotha=true;
+        }
+        return dotha;
+    }
+    public static void main(String[] args) {
+        String frow;
+        System.out.println("NOTE:");
+        System.out.println("1.you have to enter a two digit number where tens place will be row num and unit place will be column num");
+        System.out.println("2.if once slot is selected. plxz dont select that again");
+        System.out.println("3.user 1 \"x\" ");
+        System.out.println("4.user 2 \"o\" ");
+        boolean dothat=true;
+        int marks1=0;
+        int marks2=0;
+        int boxn=0;
+        while(dothat){
+            boxn=boxn+1;
+            System.out.println("you are playing "+boxn+" game");
+            String box[][] = {{"_","_","_"},{"_","_","_"},{"_","_","_"}};
+            printbox(box);
+            boolean dothis = true;
+            while(dothis){
+                int e=0;
+                Scanner myval = new Scanner(System.in);
+                System.out.print("user 1 yours turn");
+                frow = myval.nextLine();
+                char n,m;
+                n=frow.charAt(0);
+                m=frow.charAt(1);
+                int i,j;
+                i=Character.getNumericValue(n);
+                j=Character.getNumericValue(m);
+                try{
+                    if(emptycheck(box,i ,j, false)){
+                    System.out.println("plz select another slot. "+i+j+" is already selected");
+                    System.out.println("user1 yours turn");
+                    frow = myval.nextLine();
+                }
+                user1(box, frow);
+                }
+                catch(Exception l){
+                    System.out.println("you have enter the wrong slot");
+                    System.out.println("user1 yours turn");
+                    frow = myval.nextLine();
+                }
+                user1(box, frow);
+                printbox(box);
+                if(rowwins1(box,false)||colwins1(box, false)||fdgnlwin1(box,false)||bdnglwins1(box,false)){
+                    System.out.println("user1 wins");
+                    marks1=marks1+1;
+                    break;
+                }
+                for(int q=0;q<3;q++){
+                    for(int w=0;w<3;w++){
+                        if(box[q][w]!="_"){
+                            e=e+1;
+                        }
+                    }
+                }
+                if(e>=9){
+                    System.out.println("match draw");
+                    dothis=false;
+                    break;
+                }
+                Scanner myval2 = new Scanner(System.in);
+                System.out.print("user 2 yours turn");
+                frow = myval.nextLine();
+                char o,p;
+                o=frow.charAt(0);
+                p=frow.charAt(1);
+                int k,l;
+                k=Character.getNumericValue(o);
+                l=Character.getNumericValue(p);
+                try{
+                    if(emptycheck(box, k, l, false)){
+                    System.out.println("plz select another slot. "+k+l+" is already selected");
+                    System.out.println("user2 your turn");
+                    frow=myval.nextLine();
+                }
+                    user2(box, frow);
+            }
+            catch(Exception b){
+                System.out.println("you have entered a wrong slot");
+                System.out.println("user2 your turn");
+                frow=myval.nextLine();
+            }
+                user2(box, frow);
+                printbox(box);
+                if(rowwins2(box,false) || colwins2(box,false)|| fdgnlwin2(box,false)||(bdnglwins2(box,false))){
+                    System.out.println("user2 wins");
+                    marks2=marks2+1;
+                    break;
+                }
+            }
+            String yon;
+            Scanner myval3 = new Scanner(System.in);
+            System.out.println("do you want to play again");
+            yon = myval3.nextLine();
+            if(yon.equals("no")){
+                System.out.println("total games played "+boxn);
+            System.out.println("user1 marks = "+marks1);
+            System.out.println("user2 marks = "+marks2);
+            System.out.println("thank you for playing");
+                dothat=false;
+            }
+        }
+    }
+}
